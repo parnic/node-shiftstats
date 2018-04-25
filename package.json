@@ -1,0 +1,17 @@
+{
+	"name": "node-digitalshift",
+	"description": "Library for talking with DigitalShift network sites (HockeyShift, BasketballShift, etc.)",
+	"version": "0.0.1",
+	"main": "index.js",
+	"license": "MIT",
+	"repository": "https://github.com/parnic/node-digitalshift.git",
+	"main": "index.js",
+	"keywords": [
+		"digitalshift",
+		"sports",
+		"hockey",
+		"hockeyshift"
+	],
+	"dependencies": {
+	}
+}
