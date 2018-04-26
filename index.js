@@ -2,10 +2,8 @@ const http = require('http')
 const querystring = require('querystring')
 const zlib = require('zlib')
 
-let apiKey = 'YXBpLnNoaWZ0c3RhdHMuY29tLDE5YjhhZGIwNDVjZjAxMzJhM2E5N2VmZDQ1YTRj'
-
 class Request {
-  request(options) {
+  _request(options) {
     return new Promise((resolve, reject) => {
       http.get(options, (response) => {
         const { statusCode } = response
@@ -46,15 +44,20 @@ class Request {
 }
 
 module.exports = class ShiftRequest extends Request {
-  request(options) {
-    return super.request({
+  constructor(apiKey) {
+    super()
+    this.apiKey = apiKey || 'YXBpLnNoaWZ0c3RhdHMuY29tLDE5YjhhZGIwNDVjZjAxMzJhM2E5N2VmZDQ1YTRj'
+  }
+
+  _request(options) {
+    return super._request({
       hostname: 'api.shiftstats.com',
-      path: this.url(options.url, options.query),
-      headers: options.headers
+      path: this._url(options.url, options.query),
+      headers: options.headers || this._headers()
     })
   }
 
-  basicHeaders() {
+  _basicHeaders() {
     return {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
@@ -65,26 +68,26 @@ module.exports = class ShiftRequest extends Request {
     }
   }
 
-  headers() {
+  _headers() {
     if (typeof this.headersWithTicket === 'undefined') {
-      this.headersWithTicket = Object.assign({'Authorization': `StatsAuth ticket="${this.ticketHash}"`}, this.basicHeaders())
+      this.headersWithTicket = Object.assign({'Authorization': `StatsAuth ticket="${this.ticketHash}"`}, this._basicHeaders())
     }
 
     return this.headersWithTicket
   }
 
-  url(path, query) {
+  _url(path, query) {
     return `/${path}?${querystring.stringify(query)}`
   }
 
   login() {
-    return this.request({ url: 'login', query: {key: apiKey}, headers: this.basicHeaders() }).then((json) => {
+    return this._request({ url: 'login', query: {key: this.apiKey}, headers: this._basicHeaders() }).then((json) => {
       this.ticketHash = json.ticket.hash
       return json
     })
   }
 
-  divisionStandings(division_id, type = 'Regular Season') {
-    return this.request({ url: `division/${division_id}/standings`, query: {type: type}, headers: this.headers()})
+  divisionStandings(divisionId, type = 'Regular Season') {
+    return this._request({ url: `division/${divisionId}/standings`, query: {type: type}})
   }
 }
