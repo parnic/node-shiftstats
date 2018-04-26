@@ -1,6 +1,6 @@
-const ShiftRequest = require('./index')
+const ShiftStats = require('./index')
 
-let s = new ShiftRequest()
+let s = new ShiftStats()
 // with promises
 s.login().then(() => {
   return s.divisionStandings(4702)
