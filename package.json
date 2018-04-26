@@ -1,17 +1,33 @@
 {
 	"name": "node-digitalshift",
 	"description": "Library for talking with DigitalShift network sites (HockeyShift, BasketballShift, etc.)",
-	"version": "0.0.1",
+	"version": "1.0.0",
 	"main": "index.js",
 	"license": "MIT",
 	"repository": "https://github.com/parnic/node-digitalshift.git",
-	"main": "index.js",
 	"keywords": [
 		"digitalshift",
 		"sports",
+		"stats",
 		"hockey",
-		"hockeyshift"
+		"hockeyshift",
+		"basketball",
+		"basketballshift",
+		"soccer",
+		"soccershift",
+		"lacrosse",
+		"lacrosseshift",
+		"football",
+		"footballshift",
+		"baseball",
+		"baseballshift"
 	],
-	"dependencies": {
+	"devDependencies": {
+		"chai": "^4.1.2",
+		"chai-as-promised-compat": "^7.0.3",
+		"mocha": "^5.1.1"
+	},
+	"scripts": {
+		"test": "mocha test/**.spec.js"
 	}
 }
