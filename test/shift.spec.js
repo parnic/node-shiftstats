@@ -5,7 +5,7 @@ const ShiftStats = require('../index');
 const chai = require('chai');
 let expect = chai.expect;
 
-const chaiAsPromised = require('chai-as-promised-compat');
+const chaiAsPromised = require('chai-as-promised');
 chai.use(chaiAsPromised);
 
 describe('ShiftStats', () => {
