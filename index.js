@@ -201,8 +201,9 @@ module.exports = class ShiftStats extends Request {
   // limit, required
   // metrics, required
   divisionLeaders(divisionId, type = 'Regular Season', limit = 20, metrics = [
-    'points', 'goals', 'assists', 'goals_against_average', 'save_percentage',
-    'wins', 'shutouts', 'number_first_stars', 'number_stars',
+    'points', 'goals', 'assists', 'points_per_game_average', 'game_winning_goals',
+    'goals_against_average', 'save_percentage', 'wins', 'shutouts',
+    'number_first_stars', 'number_stars',
   ]) {
     return this._request({ url: `division/${divisionId}/leaders`, query: {
       limit: limit,
