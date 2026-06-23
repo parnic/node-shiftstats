@@ -29,6 +29,10 @@
 		"eslint-config-strongloop": "^2.1.0",
 		"mocha": "^11.1.0"
 	},
+	"overrides": {
+		"serialize-javascript": "^7.0.6",
+		"diff": "^8.0.4"
+	},
 	"scripts": {
 		"test": "mocha test/*.spec.js",
 		"pretest": "eslint --ignore-path .gitignore ."
