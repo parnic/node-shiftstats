@@ -36,7 +36,7 @@ describe('ShiftStats', () => {
       });
 
       it('finds the right team', () => {
-        let bears = teamSearch.teams.find(team => team.id === 18827);
+        let bears = teamSearch.teams.find(team => team.id === 679835);
         expect(bears).to.have.property('id');
       });
     });
